@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('template/layout')
 
 @section('content')
 <h1>dodaj zamówienie:</h1>

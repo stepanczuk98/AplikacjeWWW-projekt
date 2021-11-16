@@ -37,12 +37,15 @@ Route::get('orderproducts', function()
     return view('orderProducts');
 });
 
-Route::get('orders', function()
-{
-    return view('orders');
-});
+// Route::get('orders', function()
+// {
+//     return view('orders');
+// });
 
 Route::get('users', function()
 {
     return view('users');
 });
+
+Route::get('/orders', [App\Http\Controllers\OrderController::class, 'OrdersMain'])->name('Order.OrdersMain');
+Route::post('/order/add', [App\Http\Controllers\OrderController::class, 'AddOrder'])->name('Order.AddOrder');
