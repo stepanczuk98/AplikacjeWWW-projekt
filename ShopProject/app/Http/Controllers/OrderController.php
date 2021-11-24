@@ -17,8 +17,26 @@ class OrderController extends Controller
         return view('orders', ['products'=> $products]);
     }
 
+    public function List()
+    {
+        $orders = Order::select('id', 'total_price', 'created_at')
+                        ->orderBy('id')
+                        ->get();
+        $order_products = Order_products::all();
+
+
+        return view('orderList', ['orders'=>  $orders, 'order_products' => $order_products]);
+    }
+
     public function AddOrder(Request $request)
     {
+
+       // dd($request->input());
+        $request->validate([
+            'id.*'=>'required|distinct',
+            'quantity.*'=>'required|integer|min:1',
+        ]);
+
 
         $order = new Order();
         $order->total_price = 0;

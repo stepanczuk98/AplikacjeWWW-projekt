@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::get('homepage', function()
 {
     return view('homepage');
-});
+})->name('homepage');
 
 Route::get('categories', function()
 {
@@ -48,4 +48,5 @@ Route::get('users', function()
 });
 
 Route::get('/orders', [App\Http\Controllers\OrderController::class, 'OrdersMain'])->name('Order.OrdersMain');
-Route::post('/order/add', [App\Http\Controllers\OrderController::class, 'AddOrder'])->name('Order.AddOrder');
+Route::get('/orders/list', [App\Http\Controllers\OrderController::class, 'List'])->name('Order.List');
+Route::post('/orders/add', [App\Http\Controllers\OrderController::class, 'AddOrder'])->name('Order.AddOrder');

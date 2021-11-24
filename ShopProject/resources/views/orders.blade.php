@@ -1,6 +1,7 @@
 @extends('template/layout')
 
 @section('content')
+<a href="{{ route('homepage') }}"><button>Powrót</button></a>
 <h1>dodaj zamówienie:</h1>
 
 <select name="product" id="product">
@@ -8,7 +9,7 @@
         <option value="{{ $product->id }}">{{ $product->name }}</option>
     @endforeach
 </select>
-<input type="text" name="quantity" id="quantity">
+<input type="number" name="quantity" id="quantity">
 <button id="add_product">Dodaj do zamowienia</button>
 
 <h3>dodane produkty:</h3>
@@ -20,10 +21,7 @@
         </tr>
     </thead>
     <tbody id="tablebody">
-        {{-- <tr>
-            <td></td>
-            <td></td>
-         </tr> --}}
+
     </tbody>
 </table>
 <form action="{{ route('Order.AddOrder')}}" method="POST" id="add_order_form">
