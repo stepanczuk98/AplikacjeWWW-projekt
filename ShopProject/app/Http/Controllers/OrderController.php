@@ -24,8 +24,24 @@ class OrderController extends Controller
                         ->get();
         $order_products = Order_products::all();
 
+        $products = Product::select('name')
+                        ->get();
 
-        return view('orderList', ['orders'=>  $orders, 'order_products' => $order_products]);
+        return view('orderList', ['orders'=>  $orders, 'order_products' => $order_products, 'products' => $products]);
+    }
+
+    public function filter(Request $request)
+    {
+        $products = Product::select('name')
+        ->get();
+
+        $orders = Order::select('id', 'total_price', 'created_at')
+                        ->orderBy('id')
+                        ->join('order_products', 'orders.id', '=', 'order_products.order_id')
+                        ->where('order_products.product_name','=',$request->filter)
+                        ->get();
+        $order_products = Order_products::all();
+        return view('orderList', ['orders'=>  $orders, 'order_products' => $order_products, 'products' => $products]);
     }
 
     public function AddOrder(Request $request)

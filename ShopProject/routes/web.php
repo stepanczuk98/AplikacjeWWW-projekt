@@ -50,3 +50,4 @@ Route::get('users', function()
 Route::get('/orders', [App\Http\Controllers\OrderController::class, 'OrdersMain'])->name('Order.OrdersMain');
 Route::get('/orders/list', [App\Http\Controllers\OrderController::class, 'List'])->name('Order.List');
 Route::post('/orders/add', [App\Http\Controllers\OrderController::class, 'AddOrder'])->name('Order.AddOrder');
+Route::post('/orders/list/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('Order.Filter');

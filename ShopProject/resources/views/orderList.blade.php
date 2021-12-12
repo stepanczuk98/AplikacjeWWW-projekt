@@ -12,6 +12,16 @@ table, th, td {
 <a href="{{ route('homepage') }}"><button>Powrót</button></a>
 <h2>Lista Zamówień</h2>
 
+<span>Filtr:</span>
+<form action="{{ route('Order.Filter')}}" method="post">
+    @csrf
+    <select name="filter" id="filter">
+    @foreach ($products as $product)
+        <option value="{{$product->name}}">{{$product->name}}</option>
+    @endforeach
+    </select>
+    <input type="submit" value="Filtruj">
+</form>
 <table>
     <thead>
         <tr>
