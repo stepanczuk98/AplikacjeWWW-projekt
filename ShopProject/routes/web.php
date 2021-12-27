@@ -27,10 +27,10 @@ Route::get('categories', function()
     return view('categories');
 });
 
-Route::get('products', function()
-{
-    return view('products');
-});
+// Route::get('products', function()
+// {
+//     return view('products');
+// });
 
 Route::get('orderproducts', function()
 {
@@ -51,3 +51,7 @@ Route::get('/orders', [App\Http\Controllers\OrderController::class, 'OrdersMain'
 Route::get('/orders/list', [App\Http\Controllers\OrderController::class, 'List'])->name('Order.List');
 Route::post('/orders/add', [App\Http\Controllers\OrderController::class, 'AddOrder'])->name('Order.AddOrder');
 Route::post('/orders/list/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('Order.Filter');
+
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'ProductsMain'])->name('Product.ProductsMain');
+Route::get('/products/list', [App\Http\Controllers\ProductController::class, 'List'])->name('Product.List');
+Route::post('/products/add', [App\Http\Controllers\ProductController::class, 'AddProduct'])->name('Product.AddProduct');
