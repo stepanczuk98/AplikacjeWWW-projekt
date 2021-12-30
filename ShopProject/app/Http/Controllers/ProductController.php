@@ -24,10 +24,12 @@ class ProductController extends Controller
         return view('productList', ['products'=> $products]);
     }
 
-    public function AddProduct(Request $request)
+    public function Add(Request $request)
     {
         $request->validate([
             'id.*'=>'required|distinct',
+            'product_name'=>'required|min:3|max:20|unique:App\Models\Product,name',
+            'price'=>'required|numeric|gte:0.01|lte:99999.99'
         ]);
 
         $product = new Product();
@@ -37,6 +39,38 @@ class ProductController extends Controller
         $product->category_id = $request->category;
         $product->save();
 
-        return 'success';
+        return 'Produkt zostal dodany';
+    }
+
+    public function Edit($id)
+    {
+        $product = Product::find($id);
+        $categories = Product_categories::all();
+
+        return  view('productEdit',['product'=>$product, 'product_categories'=>$categories, 'selected_category'=>$product->category_id]);
+    }
+
+    public function Update($id, Request $request)
+    {
+        $product = Product::find($id);
+
+        $request->validate([
+            'product_name'=>'required|min:3|max:20',
+            'price'=>'required|numeric|gte:0.01|lte:99999.99'
+        ]);
+       
+        $product->name = $request->product_name;
+        $product->price = $request->price;
+        $product->product_category = Product_categories::select('id', 'name')->where('id','=',$request->category)->value('name');
+        $product->category_id = $request->category;
+        $product->save();
+
+        return redirect()->route('Product.List');
+    }
+
+    public function Delete($id)
+    {
+        Product::destroy($id);
+        return redirect()->route('Product.List');
     }
 }

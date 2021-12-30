@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('homepage');
 });
 
 Route::get('homepage', function()
@@ -53,5 +53,8 @@ Route::post('/orders/add', [App\Http\Controllers\OrderController::class, 'AddOrd
 Route::post('/orders/list/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('Order.Filter');
 
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'ProductsMain'])->name('Product.ProductsMain');
+Route::post('/products/add', [App\Http\Controllers\ProductController::class, 'Add'])->name('Product.AddProduct');
 Route::get('/products/list', [App\Http\Controllers\ProductController::class, 'List'])->name('Product.List');
-Route::post('/products/add', [App\Http\Controllers\ProductController::class, 'AddProduct'])->name('Product.AddProduct');
+Route::get('/products/edit/{id}', [App\Http\Controllers\ProductController::class, 'Edit'])->name('Product.EditProduct');
+Route::put('/products/update/{id}', [App\Http\Controllers\ProductController::class, 'Update'])->name('Product.UpdateProduct');
+Route::delete('/products/delete/{id}', [App\Http\Controllers\ProductController::class, 'Delete'])->name('Product.DeleteProduct');

@@ -4,6 +4,16 @@
 <a href="{{ route('homepage') }}"><button>Powrót</button></a>
 <h1>dodaj zamówienie:</h1>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <select name="product" id="product">
     @foreach ($products as $product)
         <option value="{{ $product->id }}">{{ $product->name }}</option>

@@ -25,6 +25,18 @@
                     <th>{{ $product->name }}</th>
                     <th>{{ $product->price }}</th>
                     <th>{{ $product->product_category }}</th>
+                    <th>
+                        <form method="POST" action="{{ route('Product.DeleteProduct', ['id'=> $product->id]) }}">
+                          @csrf
+                            @method('Delete')
+                            <input type="submit" value="Usun">
+                        </form>
+                    </th>
+                    <th>
+                        <form method="GET" action="{{ route('Product.EditProduct', ['id'=> $product->id]) }}" >
+                            <input type="submit" value="Edytuj">
+                        </form>
+                    </th>
                 </tr>
             @endforeach
         </tbody>
