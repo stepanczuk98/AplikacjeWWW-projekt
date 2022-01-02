@@ -1,5 +1,5 @@
 Run server:
     php artisan serve
 
-Make roles:
+Make roles and default admin account:
     php artisan db:seed --class=CreateRolesSeeder 
