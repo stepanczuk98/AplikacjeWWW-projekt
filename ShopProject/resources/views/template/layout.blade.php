@@ -11,7 +11,18 @@
     @guest
         <div> Niezalogowany uzytkownik </div>
     @else
-        Zalogowany jako: {{ Auth::user()->name }}
+        <div>
+            Zalogowany jako: {{ Auth::user()->name }}
+        </div>
+        <div>
+            Poziom uprawnien:
+            @role('Admin')
+                Administrator
+            @else
+                Uzytkownik
+            @endrole
+        </div>
+
         <div>
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
@@ -27,4 +38,3 @@
     @yield('content')
 </body>
 </html>
- 

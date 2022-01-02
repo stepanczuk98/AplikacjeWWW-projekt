@@ -52,6 +52,3 @@ Route::group(['middleware' => ['auth']], function() {
 });
  
 Auth::routes();
-    
-// Not sure if needed
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
