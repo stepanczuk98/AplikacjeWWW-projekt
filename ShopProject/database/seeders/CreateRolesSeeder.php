@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class CreateRolesSeeder extends Seeder
 {
@@ -14,7 +16,16 @@ class CreateRolesSeeder extends Seeder
      */
     public function run()
     {
-        $role = Role::create(['name' => 'Admin']);
-        $role = Role::create(['name' => 'User']);
+        Role::create(['name' => 'Admin']);
+        Role::create(['name' => 'User']);
+
+        $user = User::create([
+            'name' => 'Domyslne konto',
+            'email' => 'admin@admin',
+            'password' => Hash::make('adminPassword'),
+        ]);
+        $user->assignRole('Admin');
+        
+        $user->save();
     }
 }
