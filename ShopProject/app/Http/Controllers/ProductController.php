@@ -19,8 +19,7 @@ class ProductController extends Controller
 
     public function List()
     {
-        $products = Product::all();
-
+        $products = DB::table('products')->paginate(5);
         return view('productList', ['products'=> $products]);
     }
 
