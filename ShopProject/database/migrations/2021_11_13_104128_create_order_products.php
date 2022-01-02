@@ -24,9 +24,7 @@ class CreateOrderProducts extends Migration
         Schema::table('order_products', function (Blueprint $table) {
             $table->foreignId('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreignId('product_id')->nullable()->constrained()->references('id')->on('products');
-            $table->unique(array('product_name', 'order_id'));  
             $table->primary(['product_name', 'order_id']);
-
         });
     }
 

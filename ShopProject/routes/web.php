@@ -13,15 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
-
-Route::get('categories', function()
-{
-    return view('categories');
-});
-
 Route::get('orderproducts', function()
 {
     return view('orderProducts');
@@ -33,6 +24,10 @@ Route::get('users', function()
 });
 
 Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', function () {
+        return view('homepage');
+    });
+
     Route::get('homepage', function()
     {
         return view('homepage');
@@ -49,6 +44,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/products/edit/{id}', [App\Http\Controllers\ProductController::class, 'Edit'])->name('Product.EditProduct');
     Route::put('/products/update/{id}', [App\Http\Controllers\ProductController::class, 'Update'])->name('Product.UpdateProduct');
     Route::delete('/products/delete/{id}', [App\Http\Controllers\ProductController::class, 'Delete'])->name('Product.DeleteProduct');
+
+    Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'CategoriesMain'])->name('Category.CategoriesMain');
+    Route::post('/categories/add', [App\Http\Controllers\CategoryController::class, 'Add'])->name('Category.AddCategory');
+    Route::get('/categories/list', [App\Http\Controllers\CategoryController::class, 'List'])->name('Category.List');
+    Route::get('/categories/edit/{id}', [App\Http\Controllers\CategoryController::class, 'Edit'])->name('Category.EditCategory');
+    Route::put('/categories/update/{id}', [App\Http\Controllers\CategoryController::class, 'Update'])->name('Category.UpdateCategory');
+    Route::delete('/categories/delete/{id}', [App\Http\Controllers\CategoryController::class, 'Delete'])->name('Category.DeleteCategory');
 });
  
 Auth::routes();

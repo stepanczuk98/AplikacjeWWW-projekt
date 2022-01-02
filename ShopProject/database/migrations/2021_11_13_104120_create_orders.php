@@ -21,7 +21,7 @@ class CreateOrders extends Migration
             $table->timestamps();
         });
         Schema::table('orders', function (Blueprint $table) {
-            $table->foreignId('user_id')->nullable()->constrained()->references('id')->on('users');
+            $table->foreignId('user_id')->nullable()->constrained()->references('id')->on('users')->onDelete('set null');
         });
     }
 

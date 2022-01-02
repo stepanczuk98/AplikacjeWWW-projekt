@@ -7,6 +7,10 @@
     <a href="{{ route('Product.ProductsMain') }}"><button>dodaj produkt</button></a>
     <a href="{{ route('Product.List') }}"><button>lista produktow</button></a>
 
+    <h3>Kategorie:</h3>
+    <a href="{{ route('Category.CategoriesMain') }}"><button>dodaj kategorie</button></a>
+    <a href="{{ route('Category.List') }}"><button>dostepne kategorie</button></a>
+
     <h3>Zamówienia:</h3>
     <a href="{{ route('Order.OrdersMain') }}"><button>dodaj zamowienie</button></a>
     <a href="{{ route('Order.List') }}"><button>lista zamowien</button></a>

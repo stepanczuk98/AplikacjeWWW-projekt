@@ -22,7 +22,7 @@ class CreateProducts extends Migration
             $table->string('product_category');
         });
         Schema::table('products', function (Blueprint $table) {
-            $table->foreignId('category_id')->nullable()->constrained()->references('id')->on('product_categories');
+            $table->foreignId('category_id')->nullable()->constrained()->references('id')->on('product_categories')->onDelete('set null');;
         });
     }
 
