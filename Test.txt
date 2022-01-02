@@ -1,2 +1,0 @@
-Test repo
-https://www.hostinger.com/tutorials/how-to-install-laravel-on-ubuntu-18-04-with-apache-and-php/

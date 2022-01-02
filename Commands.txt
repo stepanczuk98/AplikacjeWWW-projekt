@@ -1,0 +1,5 @@
+Run server:
+    php artisan serve
+
+Make roles:
+    php artisan db:seed --class=CreateRolesSeeder 
