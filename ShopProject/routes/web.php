@@ -17,49 +17,41 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('homepage', function()
-{
-    return view('homepage');
-})->name('homepage');
-
 Route::get('categories', function()
 {
     return view('categories');
 });
-
-// Route::get('products', function()
-// {
-//     return view('products');
-// });
 
 Route::get('orderproducts', function()
 {
     return view('orderProducts');
 });
 
-// Route::get('orders', function()
-// {
-//     return view('orders');
-// });
-
 Route::get('users', function()
 {
     return view('users');
 });
 
-Route::get('/orders', [App\Http\Controllers\OrderController::class, 'OrdersMain'])->name('Order.OrdersMain');
-Route::get('/orders/list', [App\Http\Controllers\OrderController::class, 'List'])->name('Order.List');
-Route::post('/orders/add', [App\Http\Controllers\OrderController::class, 'AddOrder'])->name('Order.AddOrder');
-Route::post('/orders/list/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('Order.Filter');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('homepage', function()
+    {
+        return view('homepage');
+    })->name('homepage');
 
-Route::get('/products', [App\Http\Controllers\ProductController::class, 'ProductsMain'])->name('Product.ProductsMain');
-Route::post('/products/add', [App\Http\Controllers\ProductController::class, 'Add'])->name('Product.AddProduct');
-Route::get('/products/list', [App\Http\Controllers\ProductController::class, 'List'])->name('Product.List');
-Route::get('/products/edit/{id}', [App\Http\Controllers\ProductController::class, 'Edit'])->name('Product.EditProduct');
-Route::put('/products/update/{id}', [App\Http\Controllers\ProductController::class, 'Update'])->name('Product.UpdateProduct');
-Route::delete('/products/delete/{id}', [App\Http\Controllers\ProductController::class, 'Delete'])->name('Product.DeleteProduct');
-
-
+    Route::get('/orders', [App\Http\Controllers\OrderController::class, 'OrdersMain'])->name('Order.OrdersMain');
+    Route::get('/orders/list', [App\Http\Controllers\OrderController::class, 'List'])->name('Order.List');
+    Route::post('/orders/add', [App\Http\Controllers\OrderController::class, 'AddOrder'])->name('Order.AddOrder');
+    Route::post('/orders/list/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('Order.Filter');
+    
+    Route::get('/products', [App\Http\Controllers\ProductController::class, 'ProductsMain'])->name('Product.ProductsMain');
+    Route::post('/products/add', [App\Http\Controllers\ProductController::class, 'Add'])->name('Product.AddProduct');
+    Route::get('/products/list', [App\Http\Controllers\ProductController::class, 'List'])->name('Product.List');
+    Route::get('/products/edit/{id}', [App\Http\Controllers\ProductController::class, 'Edit'])->name('Product.EditProduct');
+    Route::put('/products/update/{id}', [App\Http\Controllers\ProductController::class, 'Update'])->name('Product.UpdateProduct');
+    Route::delete('/products/delete/{id}', [App\Http\Controllers\ProductController::class, 'Delete'])->name('Product.DeleteProduct');
+});
+ 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    
+// Not sure if needed
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

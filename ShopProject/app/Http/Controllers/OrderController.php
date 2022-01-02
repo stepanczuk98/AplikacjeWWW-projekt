@@ -19,9 +19,11 @@ class OrderController extends Controller
 
     public function List()
     {
-        $orders = Order::select('id', 'total_price', 'created_at')
+        $orders = DB::table('orders')
+                        ->select('id', 'total_price', 'created_at')
                         ->orderBy('id')
-                        ->get();
+                        ->paginate(5);
+                        
         $order_products = Order_products::all();
 
         $products = Product::select('name')

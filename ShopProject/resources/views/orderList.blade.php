@@ -51,5 +51,6 @@ table, th, td {
         @endforeach
     </tbody>
 </table>
+{{ $orders->links('paginator') }}
 
 @endsection
