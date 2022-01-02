@@ -3,3 +3,7 @@ Run server:
 
 Make roles and default admin account:
     php artisan db:seed --class=CreateRolesSeeder 
+
+        'email' => admin@admin
+        'password' => adminPassword
+        
