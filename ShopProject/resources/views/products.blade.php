@@ -1,5 +1,6 @@
 @extends('template/layout')
-
+<style>
+</style>
 @section('content')
   <a href="{{ route('homepage') }}"><button>Powrót</button></a>
   <h1>Dodaj produkt:</h1>
