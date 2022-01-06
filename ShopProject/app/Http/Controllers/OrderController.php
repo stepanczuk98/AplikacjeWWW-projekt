@@ -130,6 +130,11 @@ class OrderController extends Controller
 
     public function AddProduct($id, Request $request)
     {
+        $request->validate([
+            'quantity'=>'required|integer|min:1',
+            'product_id'=>'required'
+        ]);
+
         $order = Order::find($id);
         $product = Product::where('id',$request->product_id)->first()->toArray();
        
