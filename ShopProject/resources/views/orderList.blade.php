@@ -29,13 +29,15 @@ table, th, td {
             <th>Produkty</th>
             <th>cena całkowita</th>
             <th>data zamowienia</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach ($orders as $order)
             <tr>
-                <th>{{ $order->id }}</th>
-                <th> 
+                <td>{{ $order->id }}</td>
+                <td> 
                     @foreach ($order_products as $product)
                         @if ($order->id == $product->order_id)
                         <span>Nazwa: {{ $product->product_name }} </span><br>
@@ -44,9 +46,17 @@ table, th, td {
                         @endif
                     @endforeach
 
-                </th>
-                <th>{{ $order->total_price }}zł</th>
-                <th>{{ $order->created_at }}</th>
+                </td>
+                <td>{{ $order->total_price }}zł</td>
+                <td>{{ $order->created_at }}</td>
+                <form method="POST" action="{{ route('Order.DeleteOrder', ['id'=> $order->id]) }}">
+                    @csrf
+                      @method('Delete')
+                      <td><input type="submit" value="Usun"></td>
+                </form>
+                <form method="GET" action="{{ route('Order.EditOrder', ['id'=> $order->id]) }}" >
+                    <td><input type="submit" value="Edytuj"></td>
+                </form>
             </tr>
         @endforeach
     </tbody>

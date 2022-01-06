@@ -37,7 +37,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/orders/list', [App\Http\Controllers\OrderController::class, 'List'])->name('Order.List');
     Route::post('/orders/add', [App\Http\Controllers\OrderController::class, 'AddOrder'])->name('Order.AddOrder');
     Route::post('/orders/list/filter', [App\Http\Controllers\OrderController::class, 'filter'])->name('Order.Filter');
-    
+    Route::get('/orders/edit/{id}', [App\Http\Controllers\OrderController::class, 'Edit'])->name('Order.EditOrder');
+    Route::put('/orders/update/{id}', [App\Http\Controllers\OrderController::class, 'Update'])->name('Order.UpdateOrder');
+    Route::post('/orders/editQuantity/{id}', [App\Http\Controllers\OrderController::class, 'EditQuantity'])->name('Order.EditQuantity');
+    Route::post('/orders/addProduct/{id}', [App\Http\Controllers\OrderController::class, 'AddProduct'])->name('Order.AddProduct');
+    Route::delete('/orders/delete/{id}', [App\Http\Controllers\OrderController::class, 'Delete'])->name('Order.DeleteOrder');
+
+
     Route::get('/products', [App\Http\Controllers\ProductController::class, 'ProductsMain'])->name('Product.ProductsMain');
     Route::post('/products/add', [App\Http\Controllers\ProductController::class, 'Add'])->name('Product.AddProduct');
     Route::get('/products/list', [App\Http\Controllers\ProductController::class, 'List'])->name('Product.List');
