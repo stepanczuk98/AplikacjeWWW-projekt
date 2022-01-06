@@ -29,8 +29,6 @@ table, th, td {
             <th>Produkty</th>
             <th>cena całkowita</th>
             <th>data zamowienia</th>
-            <th></th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -49,6 +47,7 @@ table, th, td {
                 </td>
                 <td>{{ $order->total_price }}zł</td>
                 <td>{{ $order->created_at }}</td>
+                @role('Admin')
                 <form method="POST" action="{{ route('Order.DeleteOrder', ['id'=> $order->id]) }}">
                     @csrf
                       @method('Delete')
@@ -57,6 +56,7 @@ table, th, td {
                 <form method="GET" action="{{ route('Order.EditOrder', ['id'=> $order->id]) }}" >
                     <td><input type="submit" value="Edytuj"></td>
                 </form>
+                @endrole
             </tr>
         @endforeach
     </tbody>

@@ -38,11 +38,12 @@ class OrderController extends Controller
         $products = Product::select('name')
         ->get();
 
-        $orders = Order::select('id', 'total_price', 'created_at')
-                        ->orderBy('id')
+        $orders = Order::select('orders.id', 'total_price', 'created_at')
+                        ->orderBy('orders.id')
                         ->join('order_products', 'orders.id', '=', 'order_products.order_id')
                         ->where('order_products.product_name','=',$request->filter)
-                        ->get();
+                        ->paginate(100);
+                        // ->get();
         $order_products = Order_products::all();
         return view('orderList', ['orders'=>  $orders, 'order_products' => $order_products, 'products' => $products]);
     }

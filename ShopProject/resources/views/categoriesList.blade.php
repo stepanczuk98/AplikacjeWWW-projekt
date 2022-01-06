@@ -21,6 +21,7 @@
                 <tr>
                     <th>{{ $category->id }}</th>
                     <th>{{ $category->name }}</th>
+                    @role('Admin')
                     <th>
                         <form method="POST" action="{{ route('Category.DeleteCategory', ['id'=> $category->id]) }}">
                           @csrf
@@ -33,6 +34,7 @@
                             <input type="submit" value="Edytuj">
                         </form>
                     </th>
+                    @endrole
                 </tr>
             @endforeach
         </tbody>

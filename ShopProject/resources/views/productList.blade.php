@@ -25,6 +25,7 @@
                     <th>{{ $product->name }}</th>
                     <th>{{ $product->price }}</th>
                     <th>{{ $product->product_category }}</th>
+                    @role('Admin')
                     <th>
                         <form method="POST" action="{{ route('Product.DeleteProduct', ['id'=> $product->id]) }}">
                           @csrf
@@ -37,6 +38,7 @@
                             <input type="submit" value="Edytuj">
                         </form>
                     </th>
+                    @endrole
                 </tr>
             @endforeach
         </tbody>
